@@ -154,3 +154,82 @@ Classes `com.a1systems.utils.erl.OtpErlangAny*` inherited from `com.a1systems.ut
 
 ## Erlang process and gen_server
 
+* `com.a1systems.utils.otp.ErlangProcess` - base class for represent erlang process. Process has name and reference to mail box for messages.
+** Method `processMessage(OtpErlangObject msg)` - it's analogue to erlangs `receive` statement.
+* `com.a1systems.utils.otp.GenServer` - base class for constructing gen_server like handlers in java.
+** Method `OtpErlangObject handleCall(UUID messageUid, OtpErlangPid from, OtpErlangObject request)` is using for implement gen_servers logic
+
+### Using `com.a1systems.utils.otp.GenServer`
+
+!!!Now only `handle_call` is supported.
+
+You have to implement your own handler and override `handler_call(...)` method. `com.a1systems.utils.otp.GenServer` get message, check for gen_server's call pattern, generate uniq id (UUID) for message and send result back after processing. 
+
+Let's try realworld example
+
+```java
+public class Main {
+    public static void main(String[] args) throws IOException, OtpErlangExit, OtpErlangDecodeException {
+
+        OtpNode node = new OtpNode("gurka","test");
+
+        final GenServer1 genServer = new GenServer1("gen_server1", node);
+
+        OtpMbox mbox = genServer.getMbox();
+
+        while (true) {
+            OtpErlangObject msg = mbox.receive(1000);
+
+            System.out.println("Got msg:" + msg);
+
+            genServer.processMessage(msg);
+        }
+    }
+
+    public static class GenServer1 extends GenServer {
+
+        public GenServer1(String name, OtpNode node) {
+            super(name, node);
+        }
+
+        @Override
+        public OtpErlangObject handleCall(UUID messageUid, OtpErlangPid from, OtpErlangObject request) {
+            return
+                    Erl.tuple(
+                            Erl.string("Request processed"),
+                            Erl.tuple(
+                                    Erl.string(messageUid.toString()),
+                                    from,
+                                    request
+                            )
+                    );
+        }
+    }
+}
+```
+
+We created gen_srver that receive message and send it back with string "Request processed".
+Run epmd in background mode, run application and run erlang node like this.
+
+You have to set up cookie for remote node. Use host name from erl cli prompt.
+```
+$ erl -sname node1 -cookie test
+Erlang/OTP 18 [erts-7.0] [source] [64-bit] [smp:8:8] [async-threads:10] [kernel-poll:false]
+
+Eshell V7.0  (abort with ^G)
+...
+(node1@wiznote)1> erlang:set_cookie('gurka@wiznote', test).
+(node1@wiznote)2> net_adm:ping('gurka@wiznote').
+pong
+
+(node1@wiznote)3> gen_server:call({gen_server1,'gurka@wiznote'}, {some, request, make_ref(),"List"}).               
+{"Request processed",
+ {"8d8ad962-64ca-4a42-81ef-ba2dd2463821",<0.59.0>,
+  {some,request,#Ref<0.0.3.111>,"List"}}}
+```
+
+Console output
+
+```
+Got msg:{'$gen_call',{#Pid<node1@wiznote.59.0>,#Ref<node1@wiznote.112.3.0>},{some,request,#Ref<node1@wiznote.111.3.0>,"List"}}
+```
