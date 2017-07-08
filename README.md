@@ -78,3 +78,72 @@ Static methods for constructing pattern matching helpers (see pattern matching s
  * `OtpErlangAnyBinary _bin()` - reference to any binary with capture capabilities
  * `OtpErlangAnyLong _long()` - reference to any long with capture capabilities
 
+# Motivation example of pattern matching
+
+In erlang we can use pattern matching for processing values. For example:
+
+```erlang
+Eshell V7.0  (abort with ^G)
+
+1> ExampleList = [{prop1, "Value1"}, {prop2, make_ref()}].
+[{prop1,"Value1"},{prop2,#Ref<0.0.2.29>}]
+
+2> [{prop1, Value1}, {prop2, Value2}] = ExampleList.
+[{prop1,"Value1"},{prop2,#Ref<0.0.2.29>}]
+
+3> Value1.
+"Value1"
+
+4> Value2.
+#Ref<0.0.2.29>
+```
+
+We want to have such(nearly) mechanism in Java.
+So we created classes inherited from jInterface erlang objects and implemented `equals()` methods for such objects.
+So you can write above code in Java like that.
+
+```java
+final OtpErlangList list =
+        Erl.list(
+                Erl.tuple(
+                        Erl.atom("prop1"),
+                        Erl.string("Value1")
+                ),
+                Erl.tuple(
+                        Erl.atom("prop2"),
+                        Erl.ref("ref", 1, 7)
+                )
+        );
+
+final OtpErlangAnyList captureValue1 = Erl._list();
+final OtpErlangAnyRef captureValue2 = Erl._ref();
+
+final OtpErlangList pattern =
+        Erl.list(
+                Erl.tuple(
+                        Erl.atom("prop1"),
+                        captureValue1
+                ),
+                Erl.tuple(
+                        Erl.atom("prop2"),
+                        captureValue2
+                )
+        );
+
+if (pattern.equals(list)) {
+    System.out.println("Equal");
+} else {
+    System.out.println("Not equal");
+}
+
+System.out.println("Initial object: "+list);
+System.out.println("Value1: "+captureValue1.get());
+System.out.println("Value2: "+captureValue2.get());
+```
+Result:
+```
+Equal
+Initial object: [{prop1,[86,97,108,117,101,49]},{prop2,#Ref<ref.1>}]
+Value1: [86,97,108,117,101,49]
+Value2: #Ref<ref.1>
+```
