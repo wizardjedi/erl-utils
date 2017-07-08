@@ -147,3 +147,8 @@ Initial object: [{prop1,[86,97,108,117,101,49]},{prop2,#Ref<ref.1>}]
 Value1: [86,97,108,117,101,49]
 Value2: #Ref<ref.1>
 ```
+
+# Capturing
+
+Classes `com.a1systems.utils.erl.OtpErlangAny*` inherited from `com.a1systems.utils.erl.BaseCapture` and implement method `get()` (from `com.a1systems.utils.erl.Capture` interface) for retrieving values after using in `equals()`.
+
