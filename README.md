@@ -48,7 +48,7 @@ with this
 Erl.atom("SomeAtom");
 ```
 
-Static methods for construct Erlang objects:
+Static methods for constructing Erlang objects:
  * `OtpErlangAtom atom(String atomName)` - create Erlang atom with given name
  * `OtpErlangTuple tuple(OtpErlangObject... objects)` - create Erlang tuple (`{a,b,c}`) with given Erlang objects
  * `OtpErlangList string(String str)` - create erlang string (actually list of characters)
@@ -65,3 +65,16 @@ Static methods for construct Erlang objects:
  * `OtpErlangBoolean boolFalse()` - create erlang false atom (shortcut)
  * `OtpErlangLong longVal(long val)` - create erlang long value
  * `OtpErlangPid pid(String node, int id, int serial, int creation)` - create erlang pid
+
+Static methods for constructing pattern matching helpers (see pattern matching section)
+ * `OtpErlangAny _any()` - return reference to `Erl.ANY`. It's analogue for erlang's _ (underscore). It's object without capturing value.
+ * `OtpErlangAnyObject _object()` - reference to any term with capture capabilities
+ * `OtpErlangAnyAtom _atom()` - reference to any atom with capture capabilities
+ * `OtpErlangAnyPid _pid()` - reference to any pid with capture capabilities
+ * `OtpErlangAnyPid _map()` - reference to any map with capture capabilities
+ * `OtpErlangAnyRef _ref()` - reference to any ref with capture capabilities
+ * `OtpErlangAnyList _list()` - reference to any list with capture capabilities
+ * `OtpErlangAnyTuple _tuple()` - reference to any tuple with capture capabilities
+ * `OtpErlangAnyBinary _bin()` - reference to any binary with capture capabilities
+ * `OtpErlangAnyLong _long()` - reference to any long with capture capabilities
+
