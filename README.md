@@ -34,7 +34,7 @@ We use GitHub as MVN repo (Yes, I know that it's bad. But publishing to a public
 
 Package `com.a1systems.utils.erl` contains core helper classes.
 
-## Erl
+## Erl shortcut helper
 Class `com.a1systems.utils.erl.Erl` contains helper methods for creating Erlang object.
 
 Compare this
@@ -78,7 +78,7 @@ Static methods for constructing pattern matching helpers (see pattern matching s
  * `OtpErlangAnyBinary _bin()` - reference to any binary with capture capabilities
  * `OtpErlangAnyLong _long()` - reference to any long with capture capabilities
 
-# Motivation example of pattern matching
+### Motivation example of pattern matching
 
 In erlang we can use pattern matching for processing values. For example:
 
@@ -148,7 +148,9 @@ Value1: [86,97,108,117,101,49]
 Value2: #Ref<ref.1>
 ```
 
-# Capturing
+### Capturing
 
 Classes `com.a1systems.utils.erl.OtpErlangAny*` inherited from `com.a1systems.utils.erl.BaseCapture` and implement method `get()` (from `com.a1systems.utils.erl.Capture` interface) for retrieving values after using in `equals()`.
+
+## Erlang process and gen_server
 
