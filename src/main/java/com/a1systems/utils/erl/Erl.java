@@ -26,6 +26,14 @@ public final class Erl {
         return new OtpErlangList(str);
     }
 
+    public static OtpErlangBitstr bitString(byte[] bitStringBuffer) {
+        return new OtpErlangBitstr(bitStringBuffer);
+    }
+
+    public static OtpErlangBinary binstring(byte[] buffer) {
+        return new OtpErlangBinary(buffer);
+    }
+
     public static OtpErlangBinary binstring(String str, Charset charset) {
         return new OtpErlangBinary(str.getBytes(charset));
     }
@@ -81,6 +89,22 @@ public final class Erl {
 
     public static OtpErlangBoolean boolFalse() {
         return bool(false);
+    }
+
+    public static OtpErlangInt intVal(int val) {
+        return new OtpErlangInt(val);
+    }
+
+    public static OtpErlangShort shortVal(short val) {
+        return new OtpErlangShort(val);
+    }
+
+    public static OtpErlangFloat floatVal(float val) {
+        return new OtpErlangFloat(val);
+    }
+
+    public static OtpErlangDouble doubleVal(double val) {
+        return new OtpErlangDouble(val);
     }
 
     public static OtpErlangLong longVal(long val) {
