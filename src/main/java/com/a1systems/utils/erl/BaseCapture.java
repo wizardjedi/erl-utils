@@ -3,9 +3,19 @@ package com.a1systems.utils.erl;
 import com.ericsson.otp.erlang.OtpErlangObject;
 import com.ericsson.otp.erlang.OtpOutputStream;
 
+/**
+ * Implementation of capturing mechanism.
+ * @param <T>
+ */
 public abstract class BaseCapture<T extends OtpErlangObject> extends OtpErlangObject implements Capture<T> {
+    /**
+     * Value be captured
+     */
     protected T capture;
 
+    /**
+     * Class for equals method
+     */
     protected Class<T> clazz;
 
     public BaseCapture(Class cls) {
@@ -17,6 +27,7 @@ public abstract class BaseCapture<T extends OtpErlangObject> extends OtpErlangOb
         return capture;
     }
 
+    @Override
     public abstract String toString();
 
     @Override

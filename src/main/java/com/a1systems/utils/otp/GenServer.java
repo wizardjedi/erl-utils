@@ -10,11 +10,28 @@ import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
 
+/**
+ * Abstract implementation of gen_server behaviour
+ */
 public abstract class GenServer extends ErlangProcess {
+    /**
+     * Label used in call() to gen_server
+     */
     public static final String CALL_LABEL = "$gen_call";
+
+    /**
+     * Label used in case() to gen_server
+     */
     public static final String CAST_LABEL = "$gen_cast";
 
+    /**
+     * Call label as atom
+     */
     public static final OtpErlangAtom CALL_ATOM = Erl.atom(CALL_LABEL);
+
+    /**
+     * Cast label as atom
+     */
     public static final OtpErlangAtom CAST_ATOM = Erl.atom(CAST_LABEL);
 
     private static final Logger logger = LoggerFactory.getLogger(GenServer.class);
@@ -26,8 +43,16 @@ public abstract class GenServer extends ErlangProcess {
     }
 
     /**
+     * Process message.
+     *  * Generates uniq id of message
+     *  * Check gen_server call convension
+     *  * dispatch message to handleCall() method
+     *  * return result to client
+     *
      * For gen_server message looks like {'$gen_call',{From,Ref},Request}
      *
+     * @see https://github.com/erlang/otp/blob/master/lib/stdlib/src/gen_server.erl
+     * @see http://erlang.org/doc/design_principles/gen_server_concepts.html
      * @param msg
      */
     @Override
@@ -100,8 +125,25 @@ public abstract class GenServer extends ErlangProcess {
         }
     }
 
+    /**
+     * Process message and return result.
+     *
+     * @param messageUid
+     * @param from
+     * @param request
+     * @return
+     */
     public abstract OtpErlangObject handleCall(UUID messageUid, OtpErlangPid from, OtpErlangObject request);
 
+    /**
+     * Send message back to client.
+     *
+     * @param mbox
+     * @param messageUid
+     * @param from
+     * @param ref
+     * @param resp
+     */
     public void sendAnswer(OtpMbox mbox, UUID messageUid, OtpErlangPid from, OtpErlangRef ref, OtpErlangObject resp) {
         final OtpErlangTuple t = Erl.tuple(ref, resp);
 
