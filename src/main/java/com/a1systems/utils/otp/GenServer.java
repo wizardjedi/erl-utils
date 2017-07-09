@@ -51,9 +51,9 @@ public abstract class GenServer extends ErlangProcess {
      *
      * For gen_server message looks like {'$gen_call',{From,Ref},Request}
      *
-     * @see https://github.com/erlang/otp/blob/master/lib/stdlib/src/gen_server.erl
-     * @see http://erlang.org/doc/design_principles/gen_server_concepts.html
-     * @param msg
+     * @see <a href="https://github.com/erlang/otp/blob/master/lib/stdlib/src/gen_server.erl">gen_server.erl</a>
+     * @see <a href="http://erlang.org/doc/design_principles/gen_server_concepts.html">Gen_server concepts</a>
+     * @param msg to process
      */
     @Override
     public void processMessage(OtpErlangObject msg) {
@@ -128,21 +128,21 @@ public abstract class GenServer extends ErlangProcess {
     /**
      * Process message and return result.
      *
-     * @param messageUid
-     * @param from
-     * @param request
-     * @return
+     * @param messageUid of erlang message
+     * @param from reference to client process
+     * @param request object
+     * @return erlang object represented result to client
      */
     public abstract OtpErlangObject handleCall(UUID messageUid, OtpErlangPid from, OtpErlangObject request);
 
     /**
      * Send message back to client.
      *
-     * @param mbox
-     * @param messageUid
-     * @param from
-     * @param ref
-     * @param resp
+     * @param mbox MailBox of process
+     * @param messageUid unique message id
+     * @param from reference to client process
+     * @param ref request reference
+     * @param resp response object
      */
     public void sendAnswer(OtpMbox mbox, UUID messageUid, OtpErlangPid from, OtpErlangRef ref, OtpErlangObject resp) {
         final OtpErlangTuple t = Erl.tuple(ref, resp);

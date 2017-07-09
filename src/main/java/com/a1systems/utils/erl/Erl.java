@@ -19,8 +19,8 @@ public final class Erl {
 
     /**
      * Create erlang atom with given name
-     * @param atomName
-     * @return
+     * @param atomName for atom
+     * @return erlang atom
      */
     public static OtpErlangAtom atom(String atomName) {
         return new OtpErlangAtom(atomName);
@@ -28,8 +28,8 @@ public final class Erl {
 
     /**
      * Create erlang tuple with given objects
-     * @param objects
-     * @return
+     * @param objects to store in tuple
+     * @return erlang tuple
      */
     public static OtpErlangTuple tuple(OtpErlangObject... objects) {
         return new OtpErlangTuple(objects);
@@ -37,8 +37,8 @@ public final class Erl {
 
     /**
      * Create erlang string (actualy list) with given string
-     * @param str
-     * @return
+     * @param str to convert to list
+     * @return erlang list as string
      */
     public static OtpErlangList string(String str) {
         return new OtpErlangList(str);
@@ -46,8 +46,8 @@ public final class Erl {
 
     /**
      * Create erlang bit string from byte array
-     * @param bitStringBuffer
-     * @return
+     * @param bitStringBuffer to convert to bit string
+     * @return erlang bitstring
      */
     public static OtpErlangBitstr bitString(byte[] bitStringBuffer) {
         return new OtpErlangBitstr(bitStringBuffer);
@@ -55,8 +55,8 @@ public final class Erl {
 
     /**
      * Create erlang binary from byte array
-     * @param buffer
-     * @return
+     * @param buffer to convert to binary
+     * @return erlang binary
      */
     public static OtpErlangBinary binstring(byte[] buffer) {
         return new OtpErlangBinary(buffer);
@@ -64,9 +64,9 @@ public final class Erl {
 
     /**
      * Create erlang binary from string with given charset
-     * @param str
-     * @param charset
-     * @return
+     * @param str represent string
+     * @param charset object
+     * @return erlang binary
      */
     public static OtpErlangBinary binstring(String str, Charset charset) {
         return new OtpErlangBinary(str.getBytes(charset));
@@ -74,9 +74,9 @@ public final class Erl {
 
     /**
      * Create erlang binary from string with given charset name
-     * @param str
-     * @param charset
-     * @return
+     * @param str value
+     * @param charset name
+     * @return erlang binary
      */
     public static OtpErlangBinary binstring(String str, String charset) {
         return binstring(str, Charset.forName(charset));
@@ -84,8 +84,8 @@ public final class Erl {
 
     /**
      * Create erlang binary from string with UTF8 charset
-     * @param str
-     * @return
+     * @param str value
+     * @return erlang binary
      */
     public static OtpErlangBinary binstring(String str) {
         return binstring(str, StandardCharsets.UTF_8);
@@ -93,8 +93,8 @@ public final class Erl {
 
     /**
      * Create erlang list with given object
-     * @param objects
-     * @return
+     * @param objects to store in list
+     * @return erlang list
      */
     public static OtpErlangList list(OtpErlangObject... objects) {
         return new OtpErlangList(objects);
@@ -102,10 +102,10 @@ public final class Erl {
 
     /**
      * Create erlang ref (reference)
-     * @param s
-     * @param a
-     * @param b
-     * @return
+     * @param s node name
+     * @param a id
+     * @param b creation
+     * @return erlang ref
      */
     public static OtpErlangRef ref(String s, int a, int b) {
         return new OtpErlangRef(s, a, b);
@@ -113,9 +113,9 @@ public final class Erl {
 
     /**
      * Create erlang map with given keys and values
-     * @param keys
-     * @param values
-     * @return
+     * @param keys for map
+     * @param values for keys
+     * @return erlang map
      */
     public static OtpErlangMap map(OtpErlangObject[] keys, OtpErlangObject... values) {
         return new OtpErlangMap(keys, values);
@@ -123,8 +123,8 @@ public final class Erl {
 
     /**
      * Create erlang map with given java map
-     * @param map
-     * @return
+     * @param map to convert to erlang map
+     * @return erlang map
      */
     public static OtpErlangMap map(Map<String, OtpErlangObject> map) {
         final int elementsCount = map.size();
@@ -145,8 +145,8 @@ public final class Erl {
 
     /**
      * Create erlang exception with given string
-     * @param msg
-     * @return
+     * @param msg for exception
+     * @return erlang exception
      */
     public static OtpErlangException exception(String msg) {
         return new OtpErlangException(msg);
@@ -154,8 +154,8 @@ public final class Erl {
 
     /**
      * Create erlang boolean atom with given value
-     * @param flag
-     * @return
+     * @param flag value
+     * @return erlang boolean
      */
     public static OtpErlangBoolean bool(boolean flag) {
         return new OtpErlangBoolean(flag);
@@ -163,7 +163,7 @@ public final class Erl {
 
     /**
      * Create erlang boolean true
-     * @return
+     * @return boolean true
      */
     public static OtpErlangBoolean boolTrue() {
         return bool(true);
@@ -171,7 +171,7 @@ public final class Erl {
 
     /**
      * Create erlang boolan false
-     * @return
+     * @return boolean false
      */
     public static OtpErlangBoolean boolFalse() {
         return bool(false);
@@ -179,8 +179,8 @@ public final class Erl {
 
     /**
      * Create erlang integer value
-     * @param val
-     * @return
+     * @param val value
+     * @return int
      */
     public static OtpErlangInt intVal(int val) {
         return new OtpErlangInt(val);
@@ -188,8 +188,8 @@ public final class Erl {
 
     /**
      * Create erlang short value
-     * @param val
-     * @return
+     * @param val value
+     * @return short
      */
     public static OtpErlangShort shortVal(short val) {
         return new OtpErlangShort(val);
@@ -197,8 +197,8 @@ public final class Erl {
 
     /**
      * Create erlang float value
-     * @param val
-     * @return
+     * @param val value
+     * @return float
      */
     public static OtpErlangFloat floatVal(float val) {
         return new OtpErlangFloat(val);
@@ -206,8 +206,8 @@ public final class Erl {
 
     /**
      * Create erlang double value
-     * @param val
-     * @return
+     * @param val value
+     * @return double
      */
     public static OtpErlangDouble doubleVal(double val) {
         return new OtpErlangDouble(val);
@@ -215,8 +215,8 @@ public final class Erl {
 
     /**
      * Create erlang long value
-     * @param val
-     * @return
+     * @param val value
+     * @return long
      */
     public static OtpErlangLong longVal(long val) {
         return new OtpErlangLong(val);
@@ -224,11 +224,11 @@ public final class Erl {
 
     /**
      * Create erlang pid
-     * @param node
-     * @param id
-     * @param serial
-     * @param creation
-     * @return
+     * @param node name
+     * @param id of pid
+     * @param serial value
+     * @param creation value
+     * @return pid
      */
     public static OtpErlangPid pid(String node, int id, int serial, int creation) {
         return new OtpErlangPid(node, id,  serial, creation);
@@ -236,7 +236,7 @@ public final class Erl {
 
     /**
      * Return reference to ANY term
-     * @return
+     * @return erlang any pattern matching helper
      */
     public static OtpErlangAny _any() {
         return ANY;
@@ -244,7 +244,7 @@ public final class Erl {
 
     /**
      * Pattern matching: any object with capture capabilities
-     * @return
+     * @return erlang any object pattern matching helper
      */
     public static OtpErlangAnyObject _object() {
         return new OtpErlangAnyObject();
@@ -252,7 +252,7 @@ public final class Erl {
 
     /**
      * Pattern matching: any atom with capture capabilities
-     * @return
+     * @return erlang atom pattern matching helper
      */
     public static OtpErlangAnyAtom _atom() {
         return new OtpErlangAnyAtom();
@@ -260,7 +260,7 @@ public final class Erl {
 
     /**
      * Pattern matching: any pid with capture capabilities
-     * @return
+     * @return erlang pid pattern matching helper
      */
     public static OtpErlangAnyPid _pid() {
         return new OtpErlangAnyPid();
@@ -268,7 +268,7 @@ public final class Erl {
 
     /**
      * Pattern matching: any map with capture capabilities
-     * @return
+     * @return erlang map pattern matching helper
      */
     public static OtpErlangAnyPid _map() {
         return new OtpErlangAnyPid();
@@ -276,7 +276,7 @@ public final class Erl {
 
     /**
      * Pattern matching: any reference with capture capabilities
-     * @return
+     * @return erlang ref pattern matching helper
      */
     public static OtpErlangAnyRef _ref() {
         return new OtpErlangAnyRef();
@@ -284,7 +284,7 @@ public final class Erl {
 
     /**
      * Pattern matching: any list with capture capabilities
-     * @return
+     * @return erlang list pattern matching helper
      */
     public static OtpErlangAnyList _list() {
         return new OtpErlangAnyList();
@@ -292,7 +292,7 @@ public final class Erl {
 
     /**
      * Pattern matching: any tuple with capture capabilities
-     * @return
+     * @return erlang tuple pattern matching helper
      */
     public static OtpErlangAnyTuple _tuple() {
         return new OtpErlangAnyTuple();
@@ -300,7 +300,7 @@ public final class Erl {
 
     /**
      * Pattern matching: any binary with capture capabilities
-     * @return
+     * @return erlang binary pattern matching helper
      */
     public static OtpErlangAnyBinary _bin() {
         return new OtpErlangAnyBinary();
@@ -308,7 +308,7 @@ public final class Erl {
 
     /**
      * Pattern matching: any long with capture capabilities
-     * @return
+     * @return erlang long pattern matching helper
      */
     public static OtpErlangAnyLong _long() {
         return new OtpErlangAnyLong();

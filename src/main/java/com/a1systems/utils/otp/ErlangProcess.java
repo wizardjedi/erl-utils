@@ -31,8 +31,8 @@ public abstract class ErlangProcess {
 
     /**
      * Construct process and initialize fields
-     * @param name
-     * @param node
+     * @param name Name of process
+     * @param node Node object for process
      */
     public ErlangProcess(String name, OtpNode node) {
         this.name = name;
@@ -43,7 +43,7 @@ public abstract class ErlangProcess {
 
     /**
      * Implement this method to process messages. It's analogue to receive statement in erlang.
-     * @param msg
+     * @param msg Erlang message to process
      */
     public abstract void processMessage(OtpErlangObject msg);
 

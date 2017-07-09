@@ -5,7 +5,7 @@ import com.ericsson.otp.erlang.OtpOutputStream;
 
 /**
  * Implementation of capturing mechanism.
- * @param <T>
+ * @param <T> class of capturing
  */
 public abstract class BaseCapture<T extends OtpErlangObject> extends OtpErlangObject implements Capture<T> {
     /**
