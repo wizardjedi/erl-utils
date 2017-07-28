@@ -19,16 +19,13 @@ We use GitHub as MVN repo (Yes, I know that it's bad. But publishing to a public
 ```
 2. Add `erl-utils` to dependencies in pom.xml
 ```xml
-    <repositories>
-        <repository>
-            <id>erl-utils-mvn-repo</id>
-            <url>https://raw.github.com/wizardjedi/erl-utils/mvn-repo/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>com.a1systems.utils</groupId>
+            <artifactId>erl-utils</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 ```
 # Classes
 
