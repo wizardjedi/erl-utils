@@ -1,4 +1,4 @@
-# erl-utils [![Build Status](https://travis-ci.org/wizardjedi/erl-utils.svg?branch=master)](https://travis-ci.org/wizardjedi/erl-utils)
+# erl-utils [![Build Status](https://travis-ci.org/wizardjedi/erl-utils.svg?branch=master)](https://travis-ci.org/wizardjedi/erl-utils) [![codecov](https://codecov.io/gh/wizardjedi/erl-utils/branch/master/graph/badge.svg)](https://codecov.io/gh/wizardjedi/erl-utils)
 This library contains set of helper methods for Erlang (https://www.erlang.org/) jInterface (http://erlang.org/doc/apps/jinterface/jinterface_users_guide.html).
 
 # Using in project
@@ -19,16 +19,13 @@ We use GitHub as MVN repo (Yes, I know that it's bad. But publishing to a public
 ```
 2. Add `erl-utils` to dependencies in pom.xml
 ```xml
-    <repositories>
-        <repository>
-            <id>erl-utils-mvn-repo</id>
-            <url>https://raw.github.com/wizardjedi/erl-utils/mvn-repo/</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-            </snapshots>
-        </repository>
-    </repositories>
+    <dependencies>
+        <dependency>
+            <groupId>com.a1systems.utils</groupId>
+            <artifactId>erl-utils</artifactId>
+            <version>1.1</version>
+        </dependency>
+    </dependencies>
 ```
 # Classes
 
