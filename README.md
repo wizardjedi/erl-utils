@@ -23,7 +23,7 @@ We use GitHub as MVN repo (Yes, I know that it's bad. But publishing to a public
         <dependency>
             <groupId>com.a1systems.utils</groupId>
             <artifactId>erl-utils</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.1</version>
         </dependency>
     </dependencies>
 ```
