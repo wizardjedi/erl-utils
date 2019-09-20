@@ -24,13 +24,13 @@
         <junit.version>4.12</junit.version>
     </properties>
 
-    <distributionManagement>
-        <repository>
-            <id>internal.repo</id>
-            <name>Temporary Staging Repository</name>
-            <url>file://${project.build.directory}/mvn-repo</url>
-        </repository>
-    </distributionManagement>
+	<distributionManagement>
+	   <repository>
+		 <id>github</id>
+		 <name>GitHub OWNER Apache Maven Packages</name>
+		 <url>https://maven.pkg.github.com/wizardjedi/erl-utils</url>
+	   </repository>
+	</distributionManagement>
 
     <dependencies>
         <!-- Erlang Java JInterface -->
@@ -127,6 +127,20 @@
                     </execution>
                 </executions>
             </plugin>
+            
+            <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<formats>
+						<format>html</format>
+						<format>xml</format>
+					</formats>
+					<check />
+				</configuration>
+			</plugin>
+            
         </plugins>
     </build>
 </project>
