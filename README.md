@@ -1,3 +1,5 @@
+# This project became private in case GitHub has no public access for maven repository. Maybe this project became public after github will provide NORMAL BASE SUPPORT for Maven repositories.
+
 # erl-utils [![Build Status](https://travis-ci.org/wizardjedi/erl-utils.svg?branch=master)](https://travis-ci.org/wizardjedi/erl-utils) [![codecov](https://codecov.io/gh/wizardjedi/erl-utils/branch/master/graph/badge.svg)](https://codecov.io/gh/wizardjedi/erl-utils)
 This library contains set of helper methods for Erlang (https://www.erlang.org/) jInterface (http://erlang.org/doc/apps/jinterface/jinterface_users_guide.html).
 
